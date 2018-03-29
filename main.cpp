@@ -18,11 +18,11 @@ int main() {
 	cout << "Adding default machine code program" << endl;
 	// Load0 value 1
 	theMemory->Write(1,1);
-	theMemory->Write(2,1);
+	theMemory->Write(2,5);
 	
 	//Load1 Value 2
 	theMemory->Write(3,2);
-	theMemory->Write(4,2);
+	theMemory->Write(4,3);
 	
 	//Add
 	theMemory->Write(5,3);

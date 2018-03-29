@@ -63,7 +63,7 @@ namespace CPU_4001{
 				++m_ProgramCounter; //skip past the data
 				break;
 			case 2: //load 1
-				m_Register0 = m_TheMemory->Read(m_ProgramCounter);
+				m_Register1 = m_TheMemory->Read(m_ProgramCounter);
 				++m_ProgramCounter; //skip past the data
 				break;
 			case 3: //load 2
