@@ -19,7 +19,7 @@ int main() {
 
 	if (answer == 'Y' || answer == 'y') {
 		for (byte currentAddress = 0; currentAddress < theMemory->c_MaxAddress; ++currentAddress){
-			cout << "Address [" << (int)currentAddress << "] = " << (int)theMemory->Read(currentAddress);
+			cout << "Address [" << (int)currentAddress << "] = " << (int)theMemory->Read(currentAddress) << endl;
 		}
 	}
 
