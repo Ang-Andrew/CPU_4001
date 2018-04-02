@@ -11,6 +11,7 @@ namespace CPU_4001{
 			const byte c_BaseAddress;
 			const byte c_ReservedAddress;
 			const byte c_AddressCeiling;
+			const byte c_JumpToAddress;
 
 		private:
 			byte m_ProgramCounter;
@@ -37,6 +38,9 @@ namespace CPU_4001{
 			void Store();
 			void Print();
 			void Halt();
+			void ClearRegister0();
+			void ClearRegister1();
+			void JumpTo();
 	};
 }
 

@@ -165,7 +165,7 @@ void ProgramEntry(Memory* p_Memory){
 	cout << "<BYTE> changes current address + increment address" << endl;
 
 	if(p_Memory != nullptr){
-		byte currentAddress = 1;
+		byte currentAddress = 2;
 		bool exitEditor = false;
 		std::string input;
 		byte value;
