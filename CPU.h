@@ -41,6 +41,7 @@ namespace CPU_4001{
 			void ClearRegister0();
 			void ClearRegister1();
 			void JumpTo();
+			void JumpEqual();
 	};
 }
 

@@ -37,7 +37,7 @@ namespace CPU_4001{
 		while(!m_Halt){
 			m_TheMemory->Write(c_ReservedAddress,Fetch());
 			Decode(m_TheMemory->Read(c_ReservedAddress));
-			std::cout << int(m_ProgramCounter) << std::endl;
+			//std::cout << int(m_ProgramCounter) << std::endl;
 
 		}
 	}
@@ -45,9 +45,9 @@ namespace CPU_4001{
 	const byte CPU::Fetch(){
 		byte l_opCode = 0;
 		l_opCode = m_TheMemory->Read(m_ProgramCounter);
-		std::cout << int(m_ProgramCounter) << std::endl;
+		//std::cout << int(m_ProgramCounter) << std::endl;
 		++m_ProgramCounter;
-		std::cout << int(m_ProgramCounter) << std::endl;
+		//std::cout << int(m_ProgramCounter) << std::endl;
 		if(m_ProgramCounter > c_AddressCeiling){
 			Halt();
 		}
@@ -64,15 +64,15 @@ namespace CPU_4001{
 				break;
 			case 1: //load 0
 				m_Register0 = m_TheMemory->Read(m_ProgramCounter);
-				std::cout << int(m_ProgramCounter) << std::endl;
+				//std::cout << int(m_ProgramCounter) << std::endl;
 				++m_ProgramCounter; //skip past the data
-				std::cout << int(m_ProgramCounter) << std::endl;
+				//std::cout << int(m_ProgramCounter) << std::endl;
 				break;
 			case 2: //load 1
 				m_Register1 = m_TheMemory->Read(m_ProgramCounter);
-				std::cout << int(m_ProgramCounter) << std::endl;
+				//std::cout << int(m_ProgramCounter) << std::endl;
 				++m_ProgramCounter; //skip past the data
-				std::cout << int(m_ProgramCounter) << std::endl;
+				//std::cout << int(m_ProgramCounter) << std::endl;
 				break;
 			case 3: //load 2
 				Add();
@@ -95,6 +95,9 @@ namespace CPU_4001{
 			case 9:
 				JumpTo();
 				break;
+			case 10:
+				JumpEqual();
+				break;
 
 		}
 	}
@@ -114,17 +117,17 @@ namespace CPU_4001{
 
 	void CPU::Store(){
 		m_Register1 = m_TheMemory->Read(m_ProgramCounter);
-		std::cout << int(m_ProgramCounter) << std::endl;
+		//std::cout << int(m_ProgramCounter) << std::endl;
 		++m_ProgramCounter;
-		std::cout << int(m_ProgramCounter) << std::endl;
+		//std::cout << int(m_ProgramCounter) << std::endl;
 		m_TheMemory->Write(m_Register1,m_Register0);
 	}
 	
 	void CPU::Print(){
 		m_Register1 = m_TheMemory->Read(m_ProgramCounter);
-		std::cout << int(m_ProgramCounter) << std::endl;
+		//std::cout << int(m_ProgramCounter) << std::endl;
 		++m_ProgramCounter;
-		std::cout << int(m_ProgramCounter) << std::endl;
+		//std::cout << int(m_ProgramCounter) << std::endl;
 		m_Register0 = m_TheMemory->Read(m_Register1);
 		std::cout << (int)m_Register0 << std::endl;
 	}
@@ -138,10 +141,18 @@ namespace CPU_4001{
 	}
 	void CPU::JumpTo(){
 		m_TheMemory->Write(c_JumpToAddress,m_TheMemory->Read(m_ProgramCounter));
-		std::cout << int(m_ProgramCounter) << std::endl;
+		//std::cout << int(m_ProgramCounter) << std::endl;
 		++m_ProgramCounter;
-		std::cout << int(m_ProgramCounter) << std::endl;
+		//std::cout << int(m_ProgramCounter) << std::endl;
 		m_ProgramCounter = m_TheMemory->Read(c_JumpToAddress);
+	}
+	void CPU::JumpEqual(){
+		if(m_Register0 == m_Register1){
+			JumpEqual();
+		} else{
+			++m_ProgramCounter; //skip over the address of the jump
+		}
+
 	}
 
 }

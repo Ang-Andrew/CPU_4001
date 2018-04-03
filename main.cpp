@@ -170,7 +170,7 @@ void ProgramEntry(Memory* p_Memory){
 		std::string input;
 		byte value;
 		do{
-			cout << "[" << (int)currentAddress << "] (" << (int)p_Memory->Read(currentAddress) << ") > " << endl;
+			cout << "[" << (int)currentAddress << "] (" << (int)p_Memory->Read(currentAddress) << ") > ";
 			cin >> input;
 
 			try{
